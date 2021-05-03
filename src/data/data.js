@@ -15,9 +15,6 @@ const data = {
       unit: 'loaf',
       imgUrl: 'images/bread.svg',
       discount: 0,
-      multibuyQuantity: 2,
-      multibuyProductId: 4,
-      multibuyDiscount: 0.5,
     },
     {
       id: 3,
@@ -34,6 +31,9 @@ const data = {
       unit: 'tin',
       imgUrl: 'images/soup.svg',
       discount: 0,
+      multibuyQuantity: 2,
+      multibuyProductId: 2,
+      multibuyDiscount: 0.5,
     },
   ],
 };

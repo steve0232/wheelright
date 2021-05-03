@@ -10,6 +10,38 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+header,
+main,
+aside {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #999999;
+  margin: 20px 0px 20px 0px;
+}
+
+input {
+  border: 1px solid black;
+  box-shadow: 0 0 5pt 0.5pt #d3d3d3;
+  border-radius: 0.5rem;
+  height: 1rem;
+  padding: 1rem;
+  margin-right: 2rem;
+  margin-top: 2rem;
+}
+
+.logo {
+  width: 50px;
+}
+
+.main-header {
+  display: inline;
+  margin-left: 20px;
+}
+
 .margin {
   margin: 1rem;
 }
@@ -25,14 +57,13 @@ body {
 button {
   padding: 1rem;
   border: 0;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   grid-column: 1/-1;
   margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 button:hover {
-  border: 0;
-  border-radius: 1rem;
   cursor: pointer;
   background-color: #51a5ff;
 }
@@ -40,13 +71,22 @@ button:hover {
 .container-master {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  width: 100vw;
+  /* width: 99vw; */
 }
 
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 1rem;
+}
+
+.cart-totals {
+  float: right;
+  font-weight: 600;
+}
+
+.total {
+  float: right;
 }
 
 .rounded {

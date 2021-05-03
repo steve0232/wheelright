@@ -4,11 +4,15 @@ import data from './data/data';
 
 import Header from './components/Header';
 import Main from './components/Main';
-import Cart from './components/Cart';
+import Cart from './components/Cart/Cart';
 
 const App = props => {
   const { products } = data;
   const [updatedProducts, setUpdatedProducts] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const [usedDiscountCode, setUsedDiscountCode] = useState(false);
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const [multibuyAllowed, setMultibuyAllowed] = useState(true);
 
   useEffect(() => {
     const newProducts = products.map(item =>
@@ -29,17 +33,34 @@ const App = props => {
     console.log(newProducts);
   }, [products]);
 
-  const [cartItems, setCartItems] = useState([]);
-  const [usedDiscountCode, setUsedDiscountCode] = useState(false);
-  const [discountAmount, setDiscountAmount] = useState(0);
-  console.log(cartItems);
-
-  const onDiscount = product => {
-    console.log('Discount applied');
+  const onDiscount = e => {
+    e.preventDefault();
     setUsedDiscountCode(true);
   };
 
+  const onCheckMultibuy = () => {
+    const soup = cartItems.find(item => item.id === 4);
+    const bread = cartItems.find(item => item.id === 2);
+
+    if (soup !== undefined) {
+      if (soup.qty % 2) {
+        console.log(`multibuyAllowed ${multibuyAllowed}`);
+        console.log('2 soup');
+        console.log(bread);
+        if (bread && multibuyAllowed) {
+          console.log(`bread.qty = ${bread.qty}`);
+          console.log(`soup.qty = ${soup.qty}`);
+          console.log('multibuying');
+          bread.subtotal -= 0.4;
+          bread.message = 'Multibuy discount applied (-50%)';
+          setMultibuyAllowed(false);
+        }
+      }
+    }
+  };
+
   const onAdd = product => {
+    if (multibuyAllowed) onCheckMultibuy();
     const exist = cartItems.find(item => item.id === product.id);
     if (exist) {
       setCartItems(
@@ -90,6 +111,7 @@ const App = props => {
           discountAmount={discountAmount}
           setDiscountAmount={setDiscountAmount}
           products={updatedProducts}
+          setMultibuyAllowed={setMultibuyAllowed}
         />
       </div>
     </>
